@@ -20,7 +20,7 @@ public class Address {
 	@NotNull
 	@Min(value = 6)
 	@Max(value = 6)
-	int pinCode;
+	String pinCode;
 
 	public String getLine1() {
 		return line1;
@@ -34,7 +34,7 @@ public class Address {
 		return line2;
 	}
 
-	public Address(String line1, String line2, String city, String state, int pinCode) {
+	public Address(String line1, String line2, String city, String state, String pinCode) {
 		super();
 		this.line1 = line1;
 		this.line2 = line2;
@@ -63,11 +63,11 @@ public class Address {
 		this.state = state;
 	}
 
-	public int getPinCode() {
+	public String getPinCode() {
 		return pinCode;
 	}
 
-	public void setPinCode(int pinCode) {
+	public void setPinCode(String pinCode) {
 		this.pinCode = pinCode;
 	}
 

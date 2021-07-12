@@ -29,7 +29,6 @@ public class PersonController {
 	public Optional<Person> getById(@RequestParam(value = "id", defaultValue = "0") Optional<Integer> id,
 			@RequestParam(value = "name", defaultValue = "0") Optional<String> name) throws PersonNotFoundException {
 		// logger.debug("Getting person data with person id= {}.", id);
-		System.out.println(id.get()+" "+name.get());
 		return personservice.getByIdPerson(id.get(), name.get());
 	}
 
