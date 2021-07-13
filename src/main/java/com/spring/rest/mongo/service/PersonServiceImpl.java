@@ -3,23 +3,24 @@ package com.spring.rest.mongo.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.stereotype.Component;
 
 import com.spring.rest.mongo.customExcp.PersonNotFoundException;
 import com.spring.rest.mongo.dao.PersonDao;
 import com.spring.rest.mongo.model.Person;
-
+@EnableMongoRepositories(basePackages = "com.spring.rest.mongo.dao")
 @Component
 public class PersonServiceImpl implements Personservice {
 
+	@Autowired
 	private PersonDao dao;
 	boolean isvalid = false;
 
-	@Autowired
-	public void setPersonDao(PersonDao personDao) {
-		this.dao = personDao;
-	}
-
+	/*
+	 * @Autowired public void setPersonDao(PersonDao personDao) { this.dao =
+	 * personDao; }
+	 */
 	@Override
 	public void createPerson(Person person) throws PersonNotFoundException {
 		isvalid = PersonServiceImpl.isValid1(person);
@@ -71,10 +72,10 @@ public class PersonServiceImpl implements Personservice {
 		String nameValidate = "^[a-zA-Z\\s]+$";
 		String mobileNum = "[0-9]{10}";
 		String line1 = "^[a-zA-Z0-9\\s]+$";
-		String pincode = "[0-9]{6}";
+		//String pincode = "[0-9]{6}";
 		String citystate = "^[a-zA-Z@#&]+$";
 		if (p.getName().matches(nameValidate) && p.getMobileNumber().matches(mobileNum)
-				&& p.getAddress().getPinCode().matches(pincode) && p.getAddress().getLine1().matches(line1)
+				 && p.getAddress().getLine1().matches(line1)
 				&& p.getAddress().getLine2().matches(line1) && p.getAddress().getCity().matches(citystate)
 				&& p.getAddress().getState().matches(citystate)) {
 			return true;
